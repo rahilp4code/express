@@ -1,0 +1,19 @@
+const express = require('express');
+const setupcontroller = require('./../controllers/setupcontroller');
+
+const router = express.Router();
+
+router.param('id', setupcontroller.idCheck);
+
+router
+  .route('/')
+  .get(setupcontroller.pcBuilds)
+  .post(setupcontroller.checkBody, setupcontroller.createPcBuild);
+
+router
+  .route('/:id')
+  .get(setupcontroller.getPcBuild)
+  .patch(setupcontroller.updatePcBuild)
+  .delete(setupcontroller.deletePcBuild);
+
+module.exports = router;

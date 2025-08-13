@@ -1,0 +1,143 @@
+[
+  {
+    "id": 1,
+    "name": "The Potato Masher",
+    "summary": "Ultra-budget PC for browsing, streaming, and light gaming.",
+    "description": "Perfect for first-time PC owners who just want to enjoy esports titles and casual use without spending much.",
+    "cpu": "Intel Core i3-12100F",
+    "gpu": "NVIDIA GTX 1650 4GB",
+    "ram": "8GB DDR4 3200MHz",
+    "storage": "500GB SATA SSD",
+    "motherboard": "Gigabyte H610M H DDR4",
+    "psu": "550W Bronze Certified",
+    "case": "Ant Esports ICE-120AG",
+    "price": 32000,
+    "currency": "INR",
+    "performance_rating": 2,
+    "category": "beginner",
+    "tags": [
+      "budget",
+      "1080p low",
+      "starter build"
+    ],
+    "benchmarks": {
+      "Valorant (1080p High)": 120,
+      "GTA V (1080p High)": 60
+    },
+    "image": "https://example.com/potato-masher.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Budget Brawler",
+    "summary": "Affordable 1080p gaming setup.",
+    "description": "Built for smooth performance in popular AAA games at medium to high settings.",
+    "cpu": "AMD Ryzen 5 5600",
+    "gpu": "NVIDIA GTX 1660 Super 6GB",
+    "ram": "16GB DDR4 3200MHz",
+    "storage": "1TB NVMe SSD",
+    "motherboard": "MSI B450 Tomahawk Max II",
+    "psu": "650W Bronze Certified",
+    "case": "Antec NX200",
+    "price": 52000,
+    "currency": "INR",
+    "performance_rating": 3,
+    "category": "entry-gaming",
+    "tags": [
+      "1080p high",
+      "AAA gaming"
+    ],
+    "benchmarks": {
+      "Cyberpunk 2077 (1080p Medium)": 55,
+      "Forza Horizon 5 (1080p Ultra)": 72
+    },
+    "image": "https://example.com/budget-brawler.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Mid-Range Beast",
+    "summary": "A powerful setup for 1080p ultra and smooth 1440p gaming.",
+    "description": "Handles modern AAA titles at ultra settings with ease, while being great for streaming and content creation.",
+    "cpu": "Intel Core i5-12600K",
+    "gpu": "NVIDIA RTX 3060 Ti 8GB",
+    "ram": "16GB DDR4 3600MHz",
+    "storage": "1TB NVMe SSD + 2TB HDD",
+    "motherboard": "ASUS TUF Gaming Z690-Plus WiFi D4",
+    "psu": "650W Gold Certified",
+    "case": "NZXT H510",
+    "price": 85000,
+    "currency": "INR",
+    "performance_rating": 4,
+    "category": "mid-range",
+    "tags": [
+      "1080p ultra",
+      "1440p gaming",
+      "streaming"
+    ],
+    "benchmarks": {
+      "Cyberpunk 2077 (1080p Ultra)": 78,
+      "Elden Ring (1440p High)": 65
+    },
+    "image": "https://example.com/mid-range-beast.jpg"
+  },
+  {
+    "id": 4,
+    "name": "The Titan Slayer",
+    "summary": "High-end gaming and productivity beast.",
+    "description": "Perfect for competitive 1440p/4K gaming, heavy editing, and streaming.",
+    "cpu": "AMD Ryzen 7 7800X3D",
+    "gpu": "NVIDIA RTX 4080 Super 16GB",
+    "ram": "32GB DDR5 6000MHz",
+    "storage": "2TB NVMe Gen4 SSD",
+    "motherboard": "ASUS ROG Strix X670E-E Gaming WiFi",
+    "psu": "850W Platinum Certified",
+    "case": "Lian Li PC-O11 Dynamic",
+    "price": 220000,
+    "currency": "INR",
+    "performance_rating": 5,
+    "category": "high-end",
+    "tags": [
+      "1440p ultra",
+      "4K gaming",
+      "editing"
+    ],
+    "benchmarks": {
+      "Cyberpunk 2077 (4K Ultra RT)": 65,
+      "Hogwarts Legacy (4K High)": 82
+    },
+    "image": "https://example.com/titan-slayer.jpg"
+  },
+  {
+    "id": 5,
+    "name": "The God Machine",
+    "summary": "Absolute overkill for gaming, editing, and AI workloads.",
+    "description": "Built for enthusiasts who want the best of the best — no compromises.",
+    "cpu": "Intel Core i9-14900K",
+    "gpu": "NVIDIA RTX 4090 24GB",
+    "ram": "64GB DDR5 6400MHz",
+    "storage": "4TB NVMe Gen4 SSD + 4TB SATA SSD",
+    "motherboard": "MSI MEG Z790 Godlike",
+    "psu": "1200W Titanium Certified",
+    "case": "Corsair 1000D Super Tower",
+    "price": 500000,
+    "currency": "INR",
+    "performance_rating": 6,
+    "category": "godly",
+    "tags": [
+      "4K max",
+      "8K ready",
+      "AI workloads"
+    ],
+    "benchmarks": {
+      "Cyberpunk 2077 (4K Ultra RT)": 110,
+      "Microsoft Flight Simulator (4K Ultra)": 105
+    },
+    "image": "https://example.com/god-machine.jpg"
+  },
+  {
+    "id": 6,
+    "summary": " Legendary Setup",
+    "cpu": "AMD Ryzen potato",
+    "gpu": "rtx potato",
+    "price": "3,50,000rs"
+  }
+]
