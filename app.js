@@ -23,7 +23,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(morgan('dev'));
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 // ROUTES
 
