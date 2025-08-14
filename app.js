@@ -4,6 +4,9 @@ const morgan = require('morgan');
 const userRouter = require('./routes/userRoutes');
 const setupRouter = require('./routes/setupRoutes');
 
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
+
 const app = express();
 
 // 1] MIDDLEWARES
@@ -23,8 +26,8 @@ app.use((req, res, next) => {
   next();
 });
 
-console.log(process.env.NODE_ENV);
-if (process.env.NODE_ENV === 'development') {
+// console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV == 'development') {
   app.use(morgan('dev'));
 }
 
