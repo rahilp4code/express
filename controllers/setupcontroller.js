@@ -1,104 +1,79 @@
 const fs = require('fs');
+// const mongoose=require('mongoose')
+const Setup = require('./../models/setupModel');
 
-const setups = JSON.parse(
-  fs.readFileSync(`${__dirname}/../GamingGo/dev-data/data/setup-simple.json`)
-);
+// ROUTE HANDLERS
 
-//middlware param function
-
-exports.idCheck = (req, res, next, val) => {
-  console.log(`Tour ID is: ${val}`);
-  if (parseInt(req.params.id) > setups.length) {
-    return res.status(404).json({ message: 'inavlid ID' });
+exports.pcBuilds = async (req, res) => {
+  try {
+    console.log(req.query);
+    const allBuilds = await Setup.find().where('price').lt(100000);
+    res.status(200).json({
+      status: 'success',
+      requestTime: req.requestTime,
+      data: { allBuilds },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid data, missing required fields',
+    });
   }
-  next();
 };
 
-exports.checkBody = (req, res, next) => {
-  if (!req.body.cpu || !req.body.gpu) {
-    return res.status(400).json({ message: 'Missing either cpu or gpu' });
+exports.createPcBuild = async (req, res) => {
+  try {
+    const newSetup = await Setup.create(req.body);
+    res.status(201).json({
+      status: 'success',
+      data: { setups: newSetup },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid data, missing required fields',
+    });
   }
-  next();
 };
 
-// ROUTE HANDLERS (setups)
-
-exports.pcBuilds = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    length: setups.length,
-    requestTime: req.requestTime,
-    data: { setups },
-  });
+exports.getPcBuild = async (req, res) => {
+  try {
+    const build = await Setup.findById(req.params.id);
+    res.status(200).json({ status: 'success', data: build });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid data, missing required fields',
+    });
+  }
 };
 
-exports.createPcBuild = (req, res) => {
-  const newId = setups[setups.length - 1].id + 1;
-  const newSetup = Object.assign({ id: newId }, req.body);
-
-  setups.push(newSetup);
-  fs.writeFile(
-    `${__dirname}/../GamingGo/dev-data/data/setup-simple.json`,
-    JSON.stringify(setups, null, 2),
-    (err) => {
-      res.status(201).json({
-        status: 'success',
-        data: { setups: newSetup },
-      });
-    }
-  );
+exports.updatePcBuild = async (req, res) => {
+  try {
+    const build = await Setup.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({ status: 'success', updatedBuild: build });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+  }
 };
 
-exports.getPcBuild = (req, res) => {
-  const id = req.params.id * 1;
-  const setup = setups.find((obj) => obj.id === id);
-  res.status(200).json({ status: 'success', data: { setup } });
-};
-
-exports.updatePcBuild = (req, res) => {
-  const id = parseInt(req.params.id);
-  const update = req.body;
-
-  //find build by id
-  const buildIndex = setups.findIndex((obj) => obj.id === id);
-  //update only provided fields
-  setups[buildIndex] = { ...setups[buildIndex], ...update };
-
-  // Save updated data to file
-  fs.writeFile(
-    `${__dirname}/../GamingGo/dev-data/data/setup-simple.json`,
-    JSON.stringify(setups, null, 2),
-    (err) => {
-      if (err) {
-        res.status(404).json({ status: 'fail' });
-      }
-      res
-        .status(200)
-        .json({ status: 'success', updatedBuild: setups[buildIndex] });
-    }
-  );
-};
-
-exports.deletePcBuild = (req, res) => {
-  const id = req.params.id * 1;
-
-  const deleteIndex = setups.findIndex((obj) => obj.id === id);
-
-  //delete only provided index
-  const deleteIt = setups.splice(deleteIndex, 1)[0];
-
-  // Save updated data to JSON file
-  fs.writeFile(
-    `${__dirname}/../GamingGo/dev-data/data/setup-simple.json`,
-    JSON.stringify(setups, null, 2),
-    (err) => {
-      if (err) {
-        res.status(500).json({ status: 'fail' });
-      }
-      res.json({
-        message: 'Build deleted successfully',
-        deleteIt,
-      });
-    }
-  );
+exports.deletePcBuild = async (req, res) => {
+  try {
+    const deletedBuild = await Setup.findByIdAndDelete(req.params.id);
+    res.json({
+      message: 'Build deleted successfully',
+      deletedBuild: deletedBuild,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+  }
 };

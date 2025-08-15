@@ -15,11 +15,7 @@
     "currency": "INR",
     "performance_rating": 2,
     "category": "beginner",
-    "tags": [
-      "budget",
-      "1080p low",
-      "starter build"
-    ],
+    "tags": ["budget", "1080p low", "starter build"],
     "benchmarks": {
       "Valorant (1080p High)": 120,
       "GTA V (1080p High)": 60
@@ -42,10 +38,7 @@
     "currency": "INR",
     "performance_rating": 3,
     "category": "entry-gaming",
-    "tags": [
-      "1080p high",
-      "AAA gaming"
-    ],
+    "tags": ["1080p high", "AAA gaming"],
     "benchmarks": {
       "Cyberpunk 2077 (1080p Medium)": 55,
       "Forza Horizon 5 (1080p Ultra)": 72
@@ -68,11 +61,7 @@
     "currency": "INR",
     "performance_rating": 4,
     "category": "mid-range",
-    "tags": [
-      "1080p ultra",
-      "1440p gaming",
-      "streaming"
-    ],
+    "tags": ["1080p ultra", "1440p gaming", "streaming"],
     "benchmarks": {
       "Cyberpunk 2077 (1080p Ultra)": 78,
       "Elden Ring (1440p High)": 65
@@ -95,11 +84,7 @@
     "currency": "INR",
     "performance_rating": 5,
     "category": "high-end",
-    "tags": [
-      "1440p ultra",
-      "4K gaming",
-      "editing"
-    ],
+    "tags": ["1440p ultra", "4K gaming", "editing"],
     "benchmarks": {
       "Cyberpunk 2077 (4K Ultra RT)": 65,
       "Hogwarts Legacy (4K High)": 82
@@ -122,11 +107,7 @@
     "currency": "INR",
     "performance_rating": 6,
     "category": "godly",
-    "tags": [
-      "4K max",
-      "8K ready",
-      "AI workloads"
-    ],
+    "tags": ["4K max", "8K ready", "AI workloads"],
     "benchmarks": {
       "Cyberpunk 2077 (4K Ultra RT)": 110,
       "Microsoft Flight Simulator (4K Ultra)": 105
@@ -138,6 +119,13 @@
     "summary": " Legendary Setup",
     "cpu": "AMD Ryzen potato",
     "gpu": "rtx potato",
-    "price": "3,50,000rs"
+    "price": 350000
+  },
+  {
+    "name": "My First",
+    "gpu": "rtx 4060",
+    "cpu": "Intel i5 12400f",
+    "price": 70000,
+    "description": "Its my first gaming pc build ands my beloved"
   }
 ]

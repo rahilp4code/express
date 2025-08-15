@@ -3,12 +3,12 @@ const setupcontroller = require('./../controllers/setupcontroller');
 
 const router = express.Router();
 
-router.param('id', setupcontroller.idCheck);
+// router.param('id', setupcontroller.idCheck);
 
 router
   .route('/')
   .get(setupcontroller.pcBuilds)
-  .post(setupcontroller.checkBody, setupcontroller.createPcBuild);
+  .post(setupcontroller.createPcBuild);
 
 router
   .route('/:id')
