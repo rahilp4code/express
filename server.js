@@ -4,6 +4,7 @@ const fs = require('fs');
 const Setup = require('./models/setupModel');
 dotenv.config({ path: './config.env' });
 const app = require('./app');
+app.set('query parser', 'extended');
 
 const db = process.env.DATABASE;
 mongoose
