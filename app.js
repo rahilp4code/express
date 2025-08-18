@@ -15,7 +15,7 @@ app.use(express.json()); // this express.json here caliing this function basical
 
 //Creating middleware
 
-app.use((res, req, next) => {
+app.use((req, res, next) => {
   console.log('Hello from the Middleware');
   next(); // always remember to add next() or it will block the execution of middleware stack
 });

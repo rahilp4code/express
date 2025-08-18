@@ -4,6 +4,7 @@ const setupcontroller = require('./../controllers/setupcontroller');
 const router = express.Router();
 
 // router.param('id', setupcontroller.idCheck);
+router.route('/top-2').get(setupcontroller.topTwo, setupcontroller.pcBuilds);
 
 router
   .route('/')
