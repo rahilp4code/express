@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "name": "The Potato Masher",
     "summary": "Ultra-budget PC for browsing, streaming, and light gaming.",
     "description": "Perfect for first-time PC owners who just want to enjoy esports titles and casual use without spending much.",
@@ -13,17 +12,21 @@
     "case": "Ant Esports ICE-120AG",
     "price": 32000,
     "currency": "INR",
-    "performance_rating": 2,
+    "performance_rating": 1,
     "category": "beginner",
     "tags": ["budget", "1080p low", "starter build"],
     "benchmarks": {
       "Valorant (1080p High)": 120,
       "GTA V (1080p High)": 60
     },
-    "image": "https://example.com/potato-masher.jpg"
+    "background_image": "https://example.com/potato-masher.jpg",
+    "images": [
+      "https://example.com/titan-slayer.jpg",
+      "https://example.com/titan-slayer.jpg"
+    ],
+    "location": "Bangeluru"
   },
   {
-    "id": 2,
     "name": "Budget Brawler",
     "summary": "Affordable 1080p gaming setup.",
     "description": "Built for smooth performance in popular AAA games at medium to high settings.",
@@ -36,17 +39,21 @@
     "case": "Antec NX200",
     "price": 52000,
     "currency": "INR",
-    "performance_rating": 3,
+    "performance_rating": 2,
     "category": "entry-gaming",
     "tags": ["1080p high", "AAA gaming"],
     "benchmarks": {
       "Cyberpunk 2077 (1080p Medium)": 55,
       "Forza Horizon 5 (1080p Ultra)": 72
     },
-    "image": "https://example.com/budget-brawler.jpg"
+    "background_image": "https://example.com/budget-brawler.jpg",
+    "images": [
+      "https://example.com/titan-slayer.jpg",
+      "https://example.com/titan-slayer.jpg"
+    ],
+    "location": "Bangeluru"
   },
   {
-    "id": 3,
     "name": "Mid-Range Beast",
     "summary": "A powerful setup for 1080p ultra and smooth 1440p gaming.",
     "description": "Handles modern AAA titles at ultra settings with ease, while being great for streaming and content creation.",
@@ -59,17 +66,21 @@
     "case": "NZXT H510",
     "price": 85000,
     "currency": "INR",
-    "performance_rating": 4,
+    "performance_rating": 3.5,
     "category": "mid-range",
     "tags": ["1080p ultra", "1440p gaming", "streaming"],
     "benchmarks": {
       "Cyberpunk 2077 (1080p Ultra)": 78,
       "Elden Ring (1440p High)": 65
     },
-    "image": "https://example.com/mid-range-beast.jpg"
+    "background_image": "https://example.com/mid-range-beast.jpg",
+    "images": [
+      "https://example.com/titan-slayer.jpg",
+      "https://example.com/titan-slayer.jpg"
+    ],
+    "location": "Bangeluru"
   },
   {
-    "id": 4,
     "name": "The Titan Slayer",
     "summary": "High-end gaming and productivity beast.",
     "description": "Perfect for competitive 1440p/4K gaming, heavy editing, and streaming.",
@@ -82,17 +93,21 @@
     "case": "Lian Li PC-O11 Dynamic",
     "price": 220000,
     "currency": "INR",
-    "performance_rating": 5,
+    "performance_rating": 4.5,
     "category": "high-end",
     "tags": ["1440p ultra", "4K gaming", "editing"],
     "benchmarks": {
       "Cyberpunk 2077 (4K Ultra RT)": 65,
       "Hogwarts Legacy (4K High)": 82
     },
-    "image": "https://example.com/titan-slayer.jpg"
+    "background_image": "https://example.com/titan-slayer.jpg",
+    "images": [
+      "https://example.com/titan-slayer.jpg",
+      "https://example.com/titan-slayer.jpg"
+    ],
+    "location": "Bangeluru"
   },
   {
-    "id": 5,
     "name": "The God Machine",
     "summary": "Absolute overkill for gaming, editing, and AI workloads.",
     "description": "Built for enthusiasts who want the best of the best — no compromises.",
@@ -103,29 +118,75 @@
     "motherboard": "MSI MEG Z790 Godlike",
     "psu": "1200W Titanium Certified",
     "case": "Corsair 1000D Super Tower",
-    "price": 500000,
+    "price": 400000,
     "currency": "INR",
-    "performance_rating": 6,
+    "performance_rating": 5,
     "category": "godly",
     "tags": ["4K max", "8K ready", "AI workloads"],
     "benchmarks": {
       "Cyberpunk 2077 (4K Ultra RT)": 110,
       "Microsoft Flight Simulator (4K Ultra)": 105
     },
-    "image": "https://example.com/god-machine.jpg"
+    "background_image": "https://example.com/god-machine.jpg",
+    "images": [
+      "https://example.com/titan-slayer.jpg",
+      "https://example.com/titan-slayer.jpg"
+    ],
+    "location": "Bangeluru"
   },
   {
-    "id": 6,
-    "summary": " Legendary Setup",
+    "name": "Potato",
+    "summary": "Legendary Setup",
+    "description": "Perfection",
     "cpu": "AMD Ryzen potato",
     "gpu": "rtx potato",
-    "price": 350000
+    "ram": "🥔",
+    "storage": "🥔",
+    "motherboard": "🥔",
+    "psu": "🥔 Certified",
+    "case": "🥔",
+    "price": 1000000,
+    "currency": "INR",
+    "performance_rating": 10,
+    "category": "Final-Tier",
+    "tags": ["8k", "Final build"],
+    "benchmarks": {
+      "Valorant (1080p High)": 100000,
+      "GTA V (1080p High)": 100000
+    },
+    "background_image": "https://example.com/potato-masher.jpg",
+    "images": [
+      "https://example.com/titan-slayer.jpg",
+      "https://example.com/titan-slayer.jpg"
+    ],
+    "location": "🥔"
   },
   {
-    "name": "My First",
-    "gpu": "rtx 4060",
-    "cpu": "Intel i5 12400f",
+    "name": "My First Setup",
+    "summary": "A powerful setup for 1080p ultra and smooth 1440p gaming.",
+    "description": "Its my first gaming pc build ands my beloved, Handles modern AAA titles at ultra settings with ease, while being great for streaming and content creation.",
+    "cpu": "Intel Core i5-12400f",
+    "gpu": "NVIDIA RTX 4060 8GB",
+    "ram": "16GB DDR5 6000MHz",
+    "storage": "1TB Gen 4 NVMe SSD",
+    "motherboard": "Msi Bomber b760m Wifi",
+    "psu": "650W bronze Certified",
+    "case": "Ant Esports",
     "price": 70000,
-    "description": "Its my first gaming pc build ands my beloved"
+    "currency": "INR",
+    "performance_rating": 3.5,
+    "category": "mid-range",
+    "tags": ["1080p ultra", "1440p gaming", "streaming"],
+    "benchmarks": {
+      "Cyberpunk 2077 (1080p Ultra)": 78,
+      "Elden Ring (1440p High)": 60,
+      "The Last Of Us-Part One(1440p Higest)": 60
+    },
+    "background_image": "https://example.com/mid-range-beast.jpg",
+    "images": [
+      "https://example.com/titan-slayer.jpg",
+      "https://example.com/titan-slayer.jpg"
+    ],
+    "location": "Bangeluru"
   }
 ]

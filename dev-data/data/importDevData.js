@@ -1,10 +1,9 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const Setup = require('./../../../models/setupModel');
+const Setup = require('../../models/setupModel');
 // const idk=require('./../../../GamingGo/dev-data/data/setup-simple.json')
 dotenv.config({ path: './config.env' });
-const rid = require(`../../`);
 
 const db = process.env.DATABASE;
 mongoose
