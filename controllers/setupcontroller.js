@@ -1,5 +1,6 @@
 const Setup = require('../models/setupModel');
 const reusableApi = require('../utils/reusableApi');
+const catchAsync = require('../utils/catchAsync');
 
 exports.topTwo = (req, res, next) => {
   req.customQuery = {
@@ -87,20 +88,22 @@ exports.pcBuilds = async (req, res) => {
   }
 };
 
-exports.createPcBuild = async (req, res) => {
-  try {
-    const newSetup = await Setup.create(req.body);
-    res.status(201).json({
-      status: 'success',
-      data: { setups: newSetup },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
+exports.createPcBuild = catchAsync(async (req, res, next) => {
+  const newSetup = await Setup.create(req.body);
+  res.status(201).json({
+    status: 'success',
+    data: { setups: newSetup },
+  });
+
+  // try {
+
+  // } catch (err) {
+  //   res.status(400).json({
+  //     status: 'fail',
+  //     message: err.message,
+  //   });
+  // }
+});
 
 exports.getPcBuild = async (req, res) => {
   try {
