@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "pro": "cross-env NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js"
   },
   "author": "Rahil",
