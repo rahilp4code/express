@@ -1,10 +1,16 @@
-const fs = require('fs');
+const Users = require('../models/userModel');
+const catchAsync = require('../utils/catchAsync');
 
 // ROUTE HANDLERS (users)
 
-exports.users = (req, res) => {
-  res.status(500).json({ message: 'This router isnt implemented yet' });
-};
+exports.users = catchAsync(async function (req, res, next) {
+  const users = await Users.find();
+
+  res.status(200).json({
+    status: 'success',
+    users,
+  });
+});
 exports.createUser = (req, res) => {
   res.status(500).json({ message: 'This router isnt implemented yet' });
 };

@@ -25,6 +25,7 @@ app.use(express.json()); // this express.json here caliing this function basical
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   console.log(req.requestTime);
+  // console.log(req.headers);
   next();
 });
 

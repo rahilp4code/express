@@ -28,7 +28,7 @@ const errForProduction = (err, res) => {
     });
   } else {
     // log error
-    // console.error('ERROR💥', err);
+    console.error('ERROR💥', err);
 
     //send response message
     res.status(500).json({
@@ -37,6 +37,10 @@ const errForProduction = (err, res) => {
     });
   }
 };
+const handleJwtError = () =>
+  new AppError('Invalid token. Please log in again', 401);
+const handleExpiredJwt = () =>
+  new AppError('Your token has expired!. Please log in again', 401);
 
 module.exports = (err, req, res, next) => {
   console.error(' Global error handler caught:', err.name, err.message);
@@ -48,11 +52,14 @@ module.exports = (err, req, res, next) => {
   if (process.env.NODE_ENV === 'development') {
     if (err.name === 'CastError') err = handleCastError(err);
     if (err.name === 'ValidationError') err = handleValidationError(err);
+    if (err.name === 'JsonWebTokenError') err = handleJwtError(err);
     errForDev(err, res);
   } else if (process.env.NODE_ENV === 'production') {
     // let error = { ...err }; this caused error with isOperational property
     if (err.name === 'CastError') err = handleCastError(err);
     if (err.name === 'ValidationError') err = handleValidationError(err);
+    if (err.name === 'JsonWebTokenError') err = handleJwtError();
+    if (err.name === 'TokenExpiredError') err = handleExpiredJwt();
     errForProduction(err, res);
   }
 };

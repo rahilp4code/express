@@ -1,5 +1,6 @@
 const express = require('express');
 const setupcontroller = require('../controllers/setupcontroller');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ router.route('/tags').get(setupcontroller.tags);
 
 router
   .route('/')
-  .get(setupcontroller.pcBuilds)
+  .get(authController.protect, setupcontroller.pcBuilds)
   .post(setupcontroller.createPcBuild);
 
 router
