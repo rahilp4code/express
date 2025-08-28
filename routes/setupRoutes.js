@@ -18,6 +18,10 @@ router
   .route('/:id')
   .get(setupcontroller.getPcBuild)
   .patch(setupcontroller.updatePcBuild)
-  .delete(setupcontroller.deletePcBuild);
+  .delete(
+    authController.protect,
+    authController.restrictTo('admin'),
+    setupcontroller.deletePcBuild,
+  );
 
 module.exports = router;
