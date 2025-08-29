@@ -14,6 +14,18 @@ const signToken = (id) => {
 
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIIRES_IN * 24 * 60 * 60 * 1000,
+    ),
+    httpOnly: true, // this makes sure it isnt updated on the browser
+  };
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+  res.cookie('jwt', token, cookieOptions);
+
+  //remove password from output
+  // user.password = undefined;
+
   res.status(statusCode).json({
     status: 'success',
     token,
@@ -51,13 +63,13 @@ exports.login = catchAsync(async function (req, res, next) {
 
   // 1] check if email and password both exsist
   if (!email || !password) {
-    return next(new AppError('Please provide email and password'), 400);
+    return next(new AppError('Please provide email and password', 400));
   }
   // 2] check if the user and password are correct
   const user = await Users.findOne({ email }).select('+password'); // + is used to add field
 
   if (!user || !(await user.correctPass(password, user.password))) {
-    return next(new AppError('Incorrect email or password'), 401);
+    return next(new AppError('Incorrect email or password', 401));
   }
   // 3] generate token
   // const token = signToken(user._id);
@@ -212,20 +224,4 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   await user.save();
   // 4] log user in send token
   createSendToken(user, 200, res);
-});
-
-exports.updateMe = catchAsync(async (req, res, next) => {
-  // 1]check if the body contains password / confirmPassword
-  const user = req.user;
-  if (req.body.password || req.body.confirmPassword) {
-    return next(
-      new Error(
-        'This route is not for password updates. Go to updateMyPassword',
-        400,
-      ),
-    );
-  }
-
-  // 2] update user document
-  const update;
 });
