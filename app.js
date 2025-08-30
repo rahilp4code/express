@@ -3,11 +3,12 @@ const fs = require('fs');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
-const mongoSanitize = require('express-mongo-sanitize');
+// const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss');
 // const xss = require('xss-clean');
 
 const AppError = require('./utils/appError');
+const xssClean = require('./utils/xssClean');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const setupRouter = require('./routes/setupRoutes');
@@ -34,23 +35,34 @@ app.use(
   express.json({
     limit: '10kb',
   }),
-); // this express.json here caliing this function basically returns a function, and so that method is added to the middleware stack
+);
 
 // Data sanitization against NOSQL query injection
-// app.use(mongoSanitize());
+
+function sanitize(obj) {
+  for (const key in obj) {
+    if (/[$.]/.test(key)) {
+      const cleanKey = key.replace(/\$|\./g, '_'); // replace with underscore
+      obj[cleanKey] = obj[key];
+      delete obj[key];
+    }
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+      sanitize(obj[key]);
+    }
+  }
+}
+
+app.use(function (req, res, next) {
+  if (req.body) sanitize(req.body);
+  if (req.query) sanitize(req.query);
+  if (req.params) sanitize(req.params);
+  next();
+});
 
 // Protection against XSS
+app.use(xssClean);
 
-// app.use((req, res, next) => {
-//   if (req.body) {
-//     for (let key in req.body) {
-//       if (typeof req.body[key] === 'string') {
-//         req.body[key] = xss(req.body[key]);
-//       }
-//     }
-//   }
-//   next();
-// });
+// Prevent param pollution
 
 // serving tatic file
 app.use(express.static(`${__dirname}/public`));
