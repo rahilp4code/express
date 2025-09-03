@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
-const validator = require('validator');
+// const validator = require('validator');
+const Users = require('../models/userModel');
 
 const setupSchema = new mongoose.Schema(
   {
@@ -68,6 +69,30 @@ const setupSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    location: {
+      type: {
+        type: String,
+        default: 'Point',
+        enum: ['Point'],
+      },
+      coordinate: [Number],
+      address: String,
+      description: String,
+    },
+    locations: [
+      {
+        type: {
+          type: String,
+          default: 'Point',
+          enum: ['Point'],
+        },
+        coordinate: [Number],
+        address: String,
+        description: String,
+        day: Number,
+      },
+    ],
+    guides: Array,
   },
   {
     toJSON: { virtuals: true }, //vituals to be part of json output, true
@@ -83,6 +108,14 @@ setupSchema.virtual('worth-it').get(function () {
 
 setupSchema.pre('save', function (next) {
   this.slug = slugify(this.name, { lower: true });
+  next();
+});
+
+setupSchema.pre('save', async function (next) {
+  const guidesPromises = this.guides.map(
+    async (id) => await Users.findById(id),
+  );
+  this.guides = await Promise.all(guidesPromises);
   next();
 });
 

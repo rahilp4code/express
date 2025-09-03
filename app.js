@@ -8,7 +8,7 @@ const xss = require('xss');
 // const xss = require('xss-clean');
 
 const AppError = require('./utils/appError');
-const xssClean = require('./utils/xssClean');
+const xssClean = require('./utils/xxsClean');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const setupRouter = require('./routes/setupRoutes');
@@ -21,7 +21,8 @@ const app = express();
 // 1] Global MIDDLEWARES
 
 // Set security HTTP header
-// app.use(helmet());
+app.use(helmet());
+
 // Limit request from same API
 const limiter = rateLimit({
   max: 100,

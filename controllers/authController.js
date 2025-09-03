@@ -22,9 +22,12 @@ const createSendToken = (user, statusCode, res) => {
   };
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   res.cookie('jwt', token, cookieOptions);
+  // secure = true
+  //if your site is served over HTTP, the cookie will not be sent with requests.
+  //If your site is served over HTTPS, the cookie will be included in requests.
 
-  //remove password from output
-  // user.password = undefined;
+  // remove password from output
+  user.password = undefined;
 
   res.status(statusCode).json({
     status: 'success',
@@ -100,6 +103,7 @@ exports.protect = catchAsync(async function (req, res, next) {
 
   // 2] token verification
   let decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  console.log(decoded);
 
   // 3] checking if the user still exist
 
@@ -192,7 +196,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // 2]if token has not expired, and there is user, set new password
 
   if (!user) {
-    next(new AppError('Token is invalid or has expired'));
+    next(new AppError('Token is invalid or has expired', 401));
   }
 
   user.password = req.body.password;
