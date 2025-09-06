@@ -108,9 +108,9 @@ exports.createPcBuild = catchAsync(async (req, res, next) => {
 
 exports.getPcBuild = catchAsync(async (req, res, next) => {
   const build = await Setup.findById(req.params.id);
-  // if (!build) {
-  //   return next(new AppError(`Can't find the build..`, 404));
-  // }
+  if (!build) {
+    return next(new AppError(`Can't find the build..`, 404));
+  }
   res.status(200).json({ status: 'success', data: build });
 });
 // try {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 // const validator = require('validator');
-const Users = require('../models/userModel');
+// const Users = require('../models/userModel');
 
 const setupSchema = new mongoose.Schema(
   {
@@ -70,6 +70,7 @@ const setupSchema = new mongoose.Schema(
       default: false,
     },
     location: {
+      //GeoJson
       type: {
         type: String,
         default: 'Point',
@@ -92,7 +93,12 @@ const setupSchema = new mongoose.Schema(
         day: Number,
       },
     ],
-    guides: Array,
+    guides: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'users',
+      },
+    ],
   },
   {
     toJSON: { virtuals: true }, //vituals to be part of json output, true
@@ -111,13 +117,13 @@ setupSchema.pre('save', function (next) {
   next();
 });
 
-setupSchema.pre('save', async function (next) {
-  const guidesPromises = this.guides.map(
-    async (id) => await Users.findById(id),
-  );
-  this.guides = await Promise.all(guidesPromises);
-  next();
-});
+// setupSchema.pre('save', async function (next) {
+//   const guidesPromises = this.guides.map(
+//     async (id) => await Users.findById(id),
+//   );
+//   this.guides = await Promise.all(guidesPromises);
+//   next();
+// });
 
 // setupSchema.post('save', function (doc, next) {
 //   console.log(doc);
@@ -128,6 +134,11 @@ setupSchema.pre('save', async function (next) {
 
 setupSchema.pre(/^find/, function (next) {
   this.find({ secret_price: { $ne: true } });
+  this.populate({
+    path: 'guides',
+    select:
+      '-__v -passwordChangedAt -passwordResetExpires -passwordResetToken -role',
+  });
   next();
 });
 

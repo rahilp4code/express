@@ -12,6 +12,7 @@ const xssClean = require('./utils/xxsClean');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const setupRouter = require('./routes/setupRoutes');
+const reviewRouter = require('./routes/reviewRoutes');
 
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
@@ -91,6 +92,8 @@ if (process.env.NODE_ENV == 'development') {
 
 app.use('/api/v2/setups', setupRouter);
 app.use('/api/v2/users', userRouter);
+app.use('/api/v2/reviews', reviewRouter);
+// app.use('/api/v2/reviews', reviewRouter);
 // app.use(express.static(`${__dirname}/GamingGo/public`));
 
 // ROUTE FOR ANY URL THAT WE GET WHICH ISNT DEFINED
