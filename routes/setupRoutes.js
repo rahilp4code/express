@@ -1,6 +1,7 @@
 const express = require('express');
 const setupcontroller = require('../controllers/setupcontroller');
 const authController = require('../controllers/authController');
+const reviewRouter = require('../routes/reviewRoutes');
 
 const router = express.Router();
 
@@ -23,5 +24,10 @@ router
     authController.restrictTo('admin'),
     setupcontroller.deletePcBuild,
   );
+
+// router
+//   .route('/:tourId/reviews')
+//   .post(authController.protect, reviewController.createReview);
+router.use('/:setupId/reviews', reviewRouter);
 
 module.exports = router;

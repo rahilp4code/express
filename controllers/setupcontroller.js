@@ -2,6 +2,7 @@ const Setup = require('../models/setupModel');
 const reusableApi = require('../utils/reusableApi');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const factory = require('./handlerFactory');
 
 exports.topTwo = (req, res, next) => {
   req.customQuery = {
@@ -107,7 +108,7 @@ exports.createPcBuild = catchAsync(async (req, res, next) => {
 });
 
 exports.getPcBuild = catchAsync(async (req, res, next) => {
-  const build = await Setup.findById(req.params.id);
+  const build = await Setup.findById(req.params.id).populate('reviews');
   if (!build) {
     return next(new AppError(`Can't find the build..`, 404));
   }
@@ -136,20 +137,21 @@ exports.updatePcBuild = catchAsync(async (req, res, next) => {
   // }
 });
 
-exports.deletePcBuild = catchAsync(async (req, res, next) => {
-  // try {
-  const deletedBuild = await Setup.findByIdAndDelete(req.params.id);
-  res.json({
-    message: 'Build deleted successfully',
-    deletedBuild: deletedBuild,
-  });
-  // } catch (err) {
-  //   res.status(400).json({
-  //     status: 'fail',
-  //     message: 'Invalid ID',
-  //   });
-  // }
-});
+exports.deletePcBuild = factory.deleteOne(Setup);
+// exports.deletePcBuild = catchAsync(async (req, res, next) => {
+//   // try {
+//   const deletedBuild = await Setup.findByIdAndDelete(req.params.id);
+//   res.json({
+//     message: 'Build deleted successfully',
+//     deletedBuild: deletedBuild,
+//   });
+//   // } catch (err) {
+//   //   res.status(400).json({
+//   //     status: 'fail',
+//   //     message: 'Invalid ID',
+//   //   });
+//   // }
+// });
 
 exports.pcBuildsV2 = catchAsync(async (req, res, next) => {
   // try {

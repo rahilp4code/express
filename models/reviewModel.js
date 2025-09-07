@@ -17,7 +17,7 @@ const reviewSchema = new mongoose.Schema(
     },
     setup: {
       type: mongoose.Schema.ObjectId,
-      ref: 'pcbuilds',
+      ref: 'pcBuilds',
     },
     user: {
       type: mongoose.Schema.ObjectId,
@@ -30,6 +30,21 @@ const reviewSchema = new mongoose.Schema(
   },
 );
 
-const Review = mongoose.model('Review', reviewSchema);
+reviewSchema.pre(/^find/, function (next) {
+  //   this.populate({
+  //     path: 'setup',
+  //     select: 'name',
+  //   }).populate({
+  //     path: 'user',
+  //     select: 'name',
+  //   });
+  this.populate({
+    path: 'user',
+    select: 'name',
+  });
+  next();
+});
+
+const Review = mongoose.model('Reviews', reviewSchema);
 
 module.exports = Review;

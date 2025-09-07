@@ -99,6 +99,10 @@ const setupSchema = new mongoose.Schema(
         ref: 'users',
       },
     ],
+    // reviews: {
+    //   type: mongoose.Schema.ObjectId,
+    //   ref: 'Review',
+    // },
   },
   {
     toJSON: { virtuals: true }, //vituals to be part of json output, true
@@ -108,6 +112,12 @@ const setupSchema = new mongoose.Schema(
 
 setupSchema.virtual('worth-it').get(function () {
   if (this.price > 50000) return 'yes';
+});
+
+setupSchema.virtual('reviews', {
+  ref: 'Reviews',
+  foreignField: 'setup',
+  localField: '_id',
 });
 
 // DOCUMENT MIDDLEWAR: runs before .save() and .create()
