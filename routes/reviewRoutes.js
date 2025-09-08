@@ -10,6 +10,15 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .get(authController.protect, reviewController.getAllReviews)
-  .post(authController.protect, reviewController.createReview);
+  .post(
+    authController.protect,
+    reviewController.setSetupUserId,
+    reviewController.createReview,
+  );
+
+router
+  .route('/:id')
+  .delete(reviewController.deleteOne)
+  .patch(reviewController.updateReview);
 
 module.exports = router;

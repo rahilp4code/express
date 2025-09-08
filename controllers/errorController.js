@@ -63,8 +63,3 @@ module.exports = (err, req, res, next) => {
     errForProduction(err, res);
   }
 };
-
-// Handle invalid Mongo ObjectId (CastError)
-// if (err.name === 'CastError') {
-//   err = new AppError(`Invalid ${err.path}: ${err.value}`, 404);
-// }

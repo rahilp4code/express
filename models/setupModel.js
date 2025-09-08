@@ -63,7 +63,7 @@ const setupSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      unique: true,
+      // unique: true,
     },
     secret_price: {
       type: Boolean,

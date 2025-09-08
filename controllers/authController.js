@@ -47,18 +47,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword,
     passwordChangedAt: req.body.passwordChangedAt,
   });
-
-  //   const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-  //     expiresIn: process.env.JWT_EXPIRES_IN,
-  //   });
   createSendToken(newUser, 201, res);
-  // const token = signToken(newUser._id);
-
-  // res.status(200).json({
-  //   status: 'success',
-  //   token,
-  //   user: newUser,
-  // });
 });
 
 exports.login = catchAsync(async function (req, res, next) {
@@ -207,11 +196,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // 3]update changedPasswordAt property for the user
   // 4]log the user in,send jwt
   createSendToken(user, 200, res);
-  // const token = signToken(user._id);
-  // res.status(200).json({
-  //   status: 'success',
-  //   token,
-  // });
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {

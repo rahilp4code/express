@@ -18,8 +18,7 @@ router.patch('/updateMe', authController.protect, userController.updateMe);
 router.delete('/deleteMe', authController.protect, userController.deleteMe);
 
 router.route('/').get(userController.users).post(userController.createUser);
-// router
-//   .route('/:id')
+router.route('/:id').delete(userController.deleteAdmin);
 //   .get(userController.getUser)
 //   .patch(userController.updateUser)
 //   .delete(userController.deleteUser);
